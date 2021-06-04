@@ -1,3 +1,5 @@
+using System;
+
 namespace TGS.Challenge
 {
 	/*
@@ -24,7 +26,21 @@ namespace TGS.Challenge
 	{
 		public bool AreAnagrams(string word1, string word2)
 		{
-			return false;
+			return CharacterValue(word1) == CharacterValue(word2);
+		}
+
+		/// <summary>
+		/// returns the character value of a word by summing all the char's
+		/// </summary>
+		public int CharacterValue(string word)
+		{
+			var currentValue = 0;
+
+			foreach (var element in word?.ToLower() ?? "")
+				if (Char.IsLetter(element))
+					currentValue += element;
+
+			return currentValue;
 		}
 	}
 }
