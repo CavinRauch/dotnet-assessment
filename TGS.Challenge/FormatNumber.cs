@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Text;
 
 namespace TGS.Challenge
 {
-    /*
+	/*
         Devise a function that takes an input 'n' (integer) and returns a string that is the
         decimal representation of that number grouped by commas after every 3 digits. 
         
@@ -22,11 +23,29 @@ namespace TGS.Challenge
         There are accompanying unit tests for this exercise, ensure all tests pass & make
         sure the unit tests are correct too.
      */
-    public class FormatNumber
-    {
-        public string Format(int value)
-        {
-            return string.Empty;
-        }
-    }
+	public class FormatNumber
+	{
+		public string Format(int value)
+		{
+			if (value < 0 || 1000000000 < value)
+				throw new ArgumentOutOfRangeException(nameof(value));
+
+			var formatted = "";
+			var strValue = value.ToString();
+
+			var placer = 0;
+			for (var i = strValue.Length - 1; i >= 0; i--)
+			{
+				if (placer++ == 3)
+				{
+					formatted = "," + formatted;
+					placer = 1;
+				}
+
+				formatted = strValue[i] + formatted;
+			}
+
+			return formatted;
+		}
+	}
 }
