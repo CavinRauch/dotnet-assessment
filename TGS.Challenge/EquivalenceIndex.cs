@@ -23,36 +23,33 @@ namespace TGS.Challenge
 		{
 			var leftToRight = new int[numbers.Length];
 			var rightToLeft = new int[numbers.Length];
+			var arrayMaxIndex = numbers.Length - 1;
 
+			// Create sum arrays
 			for (int i = 0; i < numbers.Length; i++)
 			{
+				//Assign
+				var rightPosition = arrayMaxIndex - i; //offset for zero index
+				leftToRight[i] = numbers[i];
+				rightToLeft[rightPosition] = numbers[rightPosition];
+
 				//Left
 				var leftTrailingIndex = i - 1;
-				leftToRight[i] = numbers[i];
 				if (leftTrailingIndex >= 0)
 					leftToRight[i] += leftToRight[leftTrailingIndex];
 
 				//Right
-				//var correctedIndex = (numbers.Length - 1);
-				//var rightTrailingIndex = 
-				//rightToLeft[numbers.Length] = numbers[numbers.Length];
-				//if (numbers.Length - i )
-				//{
-
-				//}
+				var rightTrailingIndex = rightPosition + 1;
+				if (rightTrailingIndex <= arrayMaxIndex)
+					rightToLeft[rightPosition] += rightToLeft[rightTrailingIndex];
 			}
 
-			return -99;
-		}
+			// Attempt to find
+			for (int i = 0; i < numbers.Length; i++)
+				if (leftToRight[i] == rightToLeft[i])
+					return i;
 
-		public int Sum(int[] numbers)
-		{
-			var total = 0;
-
-			foreach (var num in numbers)
-				total += num;
-
-			return total;
+			return -1;
 		}
 	}
 }
