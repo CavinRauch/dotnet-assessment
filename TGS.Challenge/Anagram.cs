@@ -26,11 +26,11 @@ namespace TGS.Challenge
 	{
 		public bool AreAnagrams(string word1, string word2)
 		{
-			if (word1 is null || word1 == string.Empty)
-				throw new ArgumentException($"{nameof(word1)} cannot be Null", word1);
+			if (string.IsNullOrEmpty(word1))
+				throw new ArgumentException("String cannot be Null or Empty",word1);
 
-			if (word2 is null || word2 == string.Empty)
-				throw new ArgumentException($"{nameof(word2)} cannot be Null or Empty.", word2);
+			if (string.IsNullOrEmpty(word2))
+				throw new ArgumentException("String cannot be Null or Empty", word2);
 
 			return SumOfChars(word1.ToLower()) == SumOfChars(word2.ToLower());
 		}
