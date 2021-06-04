@@ -35,11 +35,8 @@ namespace TGS.Challenge
 			var placer = 0;
 			for (var i = strValue.Length - 1; i >= 0; i--)
 			{
-				if (placer++ == 3)
-				{
+				if (placer % 3 == 0 & placer++ != 0)
 					formatted = "," + formatted;
-					placer = 1;
-				}
 
 				formatted = strValue[i] + formatted;
 			}
