@@ -26,17 +26,23 @@ namespace TGS.Challenge
 	{
 		public bool AreAnagrams(string word1, string word2)
 		{
-			return CharacterValue(word1) == CharacterValue(word2);
+			if (word1 is null || word1 == string.Empty)
+				throw new ArgumentException($"{nameof(word1)} cannot be Null", word1);
+
+			if (word2 is null || word2 == string.Empty)
+				throw new ArgumentException($"{nameof(word2)} cannot be Null or Empty.", word2);
+
+			return SumOfChars(word1.ToLower()) == SumOfChars(word2.ToLower());
 		}
 
 		/// <summary>
-		/// returns the character value of a word by summing all the char's
+		/// Returns the sum of <see cref="char"/> in a <see cref="string"/>
 		/// </summary>
-		public int CharacterValue(string word)
+		public int SumOfChars(string word)
 		{
 			var currentValue = 0;
 
-			foreach (var element in word?.ToLower() ?? "")
+			foreach (var element in word)
 				if (Char.IsLetter(element))
 					currentValue += element;
 
